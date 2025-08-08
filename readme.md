@@ -22,6 +22,28 @@ Features interactive menus, system checks, download management, metadata embeddi
 
 ---
 
+🛠 Prerequisite: Export Your Spotify Data
+
+Before using Potty, you need to request your personal Spotify data from Spotify’s Privacy page. Spotify will provide you with a ZIP file containing several JSON files, including one named YourLibrary.json.
+
+This YourLibrary.json file contains your saved tracks, albums, and playlists metadata, which Potty can use to generate the track list and manage downloads.
+
+How to get your Spotify data:
+
+    Go to Spotify’s Privacy Request page.
+
+    Request your personal data export.
+
+    Spotify will email you a ZIP file when ready.
+
+    Extract the ZIP and locate YourLibrary.json.
+
+    Use or convert this JSON file as the basis for your data/tracks.json to run Potty.
+
+This step is essential to generate the input data Potty needs for downloading your favorite music.
+
+---
+
 ## 📂 Project Structure
 
 ```
