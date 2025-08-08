@@ -1,5 +1,5 @@
 {
-	"json_file": "tracks.json",
+	"json_file": "data/tracks.json",
 	"output_dir": "music",
 	"audio_format": "mp3",
 	"sleep_between": 5,

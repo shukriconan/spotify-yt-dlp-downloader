@@ -1,0 +1,29 @@
+import json
+from downloader.base_downloader import download_track
+from utils.logger import log_info, log_error
+
+FAILED_FILE = "data/failed_downloads.json"
+
+def retry_failed(config):
+    try:
+        with open(FAILED_FILE, "r", encoding="utf-8") as f:
+            failed_tracks = json.load(f)
+    except FileNotFoundError:
+        log_info("No failed downloads to retry.")
+        return
+
+    if not failed_tracks:
+        log_info("No failed downloads.")
+        return
+
+    log_info(f"Retrying {len(failed_tracks)} failed downloads...")
+    still_failed = []
+    for t in failed_tracks:
+        try:
+            download_track(t["artist"], t["track"], config["output_dir"], config["audio_format"], config["sleep_between"])
+        except Exception as e:
+            log_error(f"Retry failed: {t} - {e}")
+            still_failed.append(t)
+
+    with open(FAILED_FILE, "w", encoding="utf-8") as f:
+        json.dump(still_failed, f, indent=2)

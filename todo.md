@@ -1,0 +1,1 @@
+[] - case: empty failed_downloads failure.

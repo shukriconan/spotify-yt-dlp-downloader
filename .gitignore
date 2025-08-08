@@ -2,5 +2,3 @@ __pycache__
 music
 app.log
 *.pyc
-
-tracks.json
