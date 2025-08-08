@@ -28,6 +28,7 @@ music_downloader/
 ├── config.py          # Loads config from config.json
 ├── utils.py           # Utility functions (logging, system check, file check)
 ├── downloader.py      # Download logic
+├── prototype.py       # Standalone version, runs sequentially
 ├── requirements.txt   # Dependencies
 ├── config.json        # User-configurable settings
 └── tracks.json        # Your list of tracks
@@ -136,7 +137,3 @@ pip install -r requirements.txt
 
 This tool is for **personal use only**.
 Ensure you respect copyright laws and YouTube’s terms of service.
-
----
-
-If you want, I can also create **ASCII art for the startup banner** in the README so it feels like a real CLI tool with style. That would make this README and the program look more professional. Would you like me to add that?
