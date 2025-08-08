@@ -155,11 +155,18 @@ You will see a menu with options for downloading, checking files, importing play
 
 ---
 
+Here’s the updated Dependencies section including `mutagen` and `schedule`:
+
+---
+
 ## 🛠 Dependencies
 
-- [yt-dlp](https://github.com/yt-dlp/yt-dlp) – YouTube downloader
-- [psutil](https://pypi.org/project/psutil/) – System resource monitoring
-- [colorama](https://pypi.org/project/colorama/) – Colored terminal output
+* [yt-dlp](https://github.com/yt-dlp/yt-dlp) – YouTube downloader
+* [psutil](https://pypi.org/project/psutil/) – System resource monitoring
+* [colorama](https://pypi.org/project/colorama/) – Colored terminal output
+* [mutagen](https://pypi.org/project/mutagen/) – Audio metadata tagging and manipulation
+* [schedule](https://pypi.org/project/schedule/) – Job scheduling for periodic tasks
+
 
 Install all:
 
