@@ -7,18 +7,21 @@ Features interactive menus, system checks, download management, metadata embeddi
 
 ## 📌 Features
 
-- **Interactive CLI menus** for downloads, management, and automation
+- **Enhanced Interactive CLI menus** for downloads, management, and automation
 - **Configurable settings** in `config.json`
 - **Track management** via JSON files (pending, failed, history)
 - **System resource checks** (CPU, RAM, storage)
 - **Download by artist and song name**
 - **Batch and single downloads**
-- **Playlist import** and metadata embedding
+- **metadata embedding** for downloaded music 
 - **Retry failed downloads**
 - **Duplicate detection and file organization**
 - **Colorful terminal logs** (via `colorama`)
 - **Persistent logging** to `app.log`
 - **Modular, maintainable codebase**
+- **Playlist file import**: Use Spotify playlist file to download music (example in data/playlist).
+- **Flexible playlist downloads**: Choose to download whole playlists at once or pick individual ones.
+
 
 ---
 
@@ -53,8 +56,12 @@ spotify-ytdlp/
 ├── config.py              # Loads config from config.json
 ├── config.json            # User-configurable settings
 ├── requirements.txt       # Dependencies
+├── changelog.md           # change log
 ├── app.log                # Log file
 ├── todo.md                # Development notes
+│
+├── history/
+│   └── prototype.py       # First version of this entire app 
 │
 ├── data/
 │   ├── tracks.json            # Track list (with artist, album, track, uri)
@@ -63,9 +70,17 @@ spotify-ytdlp/
 │
 ├── downloader/
 │   ├── base_downloader.py     # Download logic (single, batch)
-│   ├── playlist_import.py     # Import playlists
+│   ├── playlist_download.py   # Import playlists
 │   ├── metadata.py            # Embed metadata
 │   ├── retry_manager.py       # Retry failed downloads
+│   └── __init__.py│
+│
+├── menus/                     # Interactive menu modules
+│   ├── automation_menu.py     # Menu for automation section
+│   ├── downloads_menu.py      # Menu for downloads section
+│   ├── main_menu.py           # Menu for main section
+│   ├── management_menu.py     # Menu for management section
+│   ├── tools_menu.py          # Menu for tools section
 │   └── __init__.py
 │
 ├── managers/
@@ -76,6 +91,7 @@ spotify-ytdlp/
 │
 ├── utils/
 │   ├── logger.py              # Logging utilities
+│   ├── loaders.py             # Loading utilities
 │   ├── system.py              # System resource checks
 │   ├── track_checker.py       # Check downloaded files
 │   └── __init__.py
@@ -114,7 +130,7 @@ Edit `config.json` to set your preferences:
 
 ```json
 {
-	"json_file": "data/tracks.json",
+	"tracks_file": "data/tracks.json",
 	"output_dir": "music",
 	"audio_format": "mp3",
 	"sleep_between": 5,
@@ -161,12 +177,11 @@ Here’s the updated Dependencies section including `mutagen` and `schedule`:
 
 ## 🛠 Dependencies
 
-* [yt-dlp](https://github.com/yt-dlp/yt-dlp) – YouTube downloader
-* [psutil](https://pypi.org/project/psutil/) – System resource monitoring
-* [colorama](https://pypi.org/project/colorama/) – Colored terminal output
-* [mutagen](https://pypi.org/project/mutagen/) – Audio metadata tagging and manipulation
-* [schedule](https://pypi.org/project/schedule/) – Job scheduling for periodic tasks
-
+- [yt-dlp](https://github.com/yt-dlp/yt-dlp) – YouTube downloader
+- [psutil](https://pypi.org/project/psutil/) – System resource monitoring
+- [colorama](https://pypi.org/project/colorama/) – Colored terminal output
+- [mutagen](https://pypi.org/project/mutagen/) – Audio metadata tagging and manipulation
+- [schedule](https://pypi.org/project/schedule/) – Job scheduling for periodic tasks
 
 Install all:
 

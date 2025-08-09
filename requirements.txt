@@ -3,3 +3,4 @@ colorama
 yt-dlp
 mutagen
 schedule
+questionary

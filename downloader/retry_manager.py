@@ -1,3 +1,4 @@
+import os
 import json
 from downloader.base_downloader import download_track
 from utils.logger import log_info, log_error
@@ -5,11 +6,19 @@ from utils.logger import log_info, log_error
 FAILED_FILE = "data/failed_downloads.json"
 
 def retry_failed(config):
+    if not os.path.exists(FAILED_FILE):
+        log_info("No failed downloads to retry.")
+        return
+
     try:
         with open(FAILED_FILE, "r", encoding="utf-8") as f:
-            failed_tracks = json.load(f)
-    except FileNotFoundError:
-        log_info("No failed downloads to retry.")
+            content = f.read().strip()
+            if not content:  # File exists but is empty
+                log_info("No failed downloads.")
+                return
+            failed_tracks = json.loads(content)
+    except json.JSONDecodeError:
+        log_error("Failed downloads file is corrupted or invalid JSON.")
         return
 
     if not failed_tracks:
@@ -18,6 +27,7 @@ def retry_failed(config):
 
     log_info(f"Retrying {len(failed_tracks)} failed downloads...")
     still_failed = []
+
     for t in failed_tracks:
         try:
             download_track(t["artist"], t["track"], config["output_dir"], config["audio_format"], config["sleep_between"])
