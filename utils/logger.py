@@ -1,11 +1,12 @@
 import logging
 from colorama import Fore, Style, init
+from constants import LOG_FILE
 
 init(autoreset=True)
 
 def setup_logging():
     logging.basicConfig(
-        filename="app.log",
+        filename=LOG_FILE,
         level=logging.INFO,
         format="%(asctime)s - %(levelname)s - %(message)s"
     )

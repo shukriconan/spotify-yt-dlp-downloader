@@ -1,8 +1,8 @@
 {
-	"tracks_file": "data/tracks.json",
-	"playlists_file": "data/playlists.json",
-	"output_dir": "music",
-	"audio_format": "mp3",
-	"sleep_between": 5,
-	"average_download_time": 20
+  "tracks_file": "data/tracks.json",
+  "playlists_file": "data/playlists.json",
+  "output_dir": "music",
+  "audio_format": "mp3",
+  "sleep_between": 5,
+  "average_download_time": 20
 }

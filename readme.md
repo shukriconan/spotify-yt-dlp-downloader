@@ -19,8 +19,11 @@ Features interactive menus, system checks, download management, metadata embeddi
 - **Colorful terminal logs** (via `colorama`)
 - **Persistent logging** to `app.log`
 - **Modular, maintainable codebase**
-- **Playlist file import**: Use Spotify playlist file to download music (example in data/playlist).
-- **Flexible playlist downloads**: Choose to download whole playlists at once or pick individual ones.
+- **Playlist file download**: using the playlist file.
+- **Flexible playlist downloads**: whole playlists at once or individual ones.
+- **Export library data** as JSON with detailed track and album info.
+- **Clean up music library** by removing broken, or unreadable tracks.
+- **choosing audio format** and target bitrate w/ quality and size impacts.
 
 
 ---
@@ -59,6 +62,7 @@ spotify-ytdlp/
 ├── changelog.md           # change log
 ├── app.log                # Log file
 ├── todo.md                # Development notes
+├── constants.py           # constants
 │
 ├── history/
 │   └── prototype.py       # First version of this entire app 
@@ -68,9 +72,13 @@ spotify-ytdlp/
 │   ├── failed_downloads.json  # Tracks that failed to download
 │   └── download_history.json  # Downloaded tracks history
 │
+├── export/
+│   ├── potyy_export_(MDY).json  # export of tracks in music folder
+│   └── playlist_tracklist.json  # playlist in tracks format
+│
 ├── downloader/
 │   ├── base_downloader.py     # Download logic (single, batch)
-│   ├── playlist_download.py   # Import playlists
+│   ├── playlist_download.py   # Download playlists
 │   ├── metadata.py            # Embed metadata
 │   ├── retry_manager.py       # Retry failed downloads
 │   └── __init__.py│
@@ -81,6 +89,16 @@ spotify-ytdlp/
 │   ├── main_menu.py           # Menu for main section
 │   ├── management_menu.py     # Menu for management section
 │   ├── tools_menu.py          # Menu for tools section
+│   └── __init__.py
+│
+├── tools/
+│   ├── choose_audio_format.py      # pick global format for download
+│   ├── compress_music.py           # compress songs to a certain format
+│   ├── dependency_check.py         # check if your dependencies are installed
+│   ├── library_cleanup.py          # deletes broken track files
+│   ├── library_export_json.py      # all tracks in music folder as json
+│   ├── open_log.py                 # opens app.log
+│   ├── playlist_to_tracklist.py    # playlist turned into tracklist format
 │   └── __init__.py
 │
 ├── managers/

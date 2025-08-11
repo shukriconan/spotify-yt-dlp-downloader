@@ -1,7 +1,6 @@
 import json
 from utils.logger import log_info, log_error
-
-PROGRESS_FILE = "data/download_progress.json"
+from constants import PROGRESS_FILE
 
 def save_progress(pending_tracks):
     try:

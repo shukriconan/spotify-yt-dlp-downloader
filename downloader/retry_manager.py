@@ -2,8 +2,7 @@ import os
 import json
 from downloader.base_downloader import download_track
 from utils.logger import log_info, log_error
-
-FAILED_FILE = "data/failed_downloads.json"
+from constants import FAILED_FILE
 
 def retry_failed(config):
     if not os.path.exists(FAILED_FILE):
