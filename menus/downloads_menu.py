@@ -5,6 +5,8 @@ from utils.track_checker import check_downloaded_files, check_downloaded_playlis
 from utils.loaders import load_tracks, load_playlists
 from downloader.base_downloader import download_track, batch_download
 from downloader.playlist_download import download_playlist
+from downloader.youtube_link_downloader import download_from_link, download_from_playlist
+
 
 def downloads_menu(config):
     """
@@ -17,7 +19,8 @@ def downloads_menu(config):
             "Download all pending (batch async)",
             "Search & Download a single track",
             "Download from playlists file",
-            "Back"
+            "Download from YouTube link/playlist",
+            "Back",
         ]
     ).ask()
 
@@ -97,3 +100,15 @@ def downloads_menu(config):
                 config["audio_format"],
                 config["sleep_between"]
             ))
+
+    elif choice == "Download from YouTube link/playlist":
+        url = questionary.text("Paste YouTube video or playlist URL:").ask()
+        if not url:
+            log_warning("No URL provided.")
+            return
+
+        if "playlist" in url.lower():
+            download_from_playlist(url, config["output_dir"], config["audio_format"], config["sleep_between"])
+        else:
+            download_from_link(url, config["output_dir"], config["audio_format"])
+

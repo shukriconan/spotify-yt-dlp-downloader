@@ -1,6 +1,6 @@
 # 🎶 Potty
 
-A modular, Python-based command-line tool for downloading music from Spotify using **yt-dlp**.  
+A modular, Python-based command-line tool for downloading music from Spotify & Youtube using **yt-dlp**.  
 Features interactive menus, system checks, download management, metadata embedding, and robust logging.
 
 ---
@@ -23,12 +23,13 @@ Features interactive menus, system checks, download management, metadata embeddi
 - **Flexible playlist downloads**: whole playlists at once or individual ones.
 - **Export library data** as JSON with detailed track and album info.
 - **Clean up music library** by removing broken, or unreadable tracks.
-- **choosing audio format** and target bitrate w/ quality and size impacts.
+- **Choosing audio format** and target bitrate w/ quality and size impacts.
+- **Download From Youtube** paste the link and download playlist or video as audio file.
 
 
 ---
 
-🛠 Prerequisite: Export Your Spotify Data
+## 🛠 Prerequisite for spotify downloads: **Export Your Spotify Data**
 
 Before using Potty, you need to request your personal Spotify data from Spotify’s Privacy page. Spotify will provide you with a ZIP file containing several JSON files, including one named YourLibrary.json.
 
@@ -77,10 +78,11 @@ spotify-ytdlp/
 │   └── playlist_tracklist.json  # playlist in tracks format
 │
 ├── downloader/
-│   ├── base_downloader.py     # Download logic (single, batch)
-│   ├── playlist_download.py   # Download playlists
-│   ├── metadata.py            # Embed metadata
-│   ├── retry_manager.py       # Retry failed downloads
+│   ├── base_downloader.py                # Download logic (single, batch)
+│   ├── playlist_download.py              # Download playlists
+│   ├── metadata.py                       # Embed metadata
+│   ├── retry_manager.py                  # Retry failed downloads
+│   ├── youtube_link_downloader.py        # Download Directly from youtube link
 │   └── __init__.py│
 │
 ├── menus/                     # Interactive menu modules
@@ -134,11 +136,14 @@ spotify-ytdlp/
    pip install -r requirements.txt
    ```
 
+> (if you use system check it'll say yt-dlp is not installed even if it is so don't worry about that until I fix that check).
+
 3. **Ensure `yt-dlp` is installed**:
 
    ```bash
    pip install yt-dlp
    ```
+
 
 ---
 
@@ -149,6 +154,7 @@ Edit `config.json` to set your preferences:
 ```json
 {
 	"tracks_file": "data/tracks.json",
+	"playlists_file": "data/playlists.json",
 	"output_dir": "music",
 	"audio_format": "mp3",
 	"sleep_between": 5,
@@ -177,6 +183,36 @@ Edit `config.json` to set your preferences:
 
 ---
 
+## 🎵 Playlist Format
+
+`data/playlists.json` should contain:
+
+```json
+{
+  "playlists": [
+    {
+      "name": "Simon vol.94",
+      "lastModifiedDate": "2025-05-03",
+      "items": [
+        {
+          "track": {
+            "trackName": "Time of Our Lives",
+            "artistName": "Pitbull",
+            "albumName": "Globalization",
+            "trackUri": "spotify:track:2bJvI42r8EF3wxjOuDav4r"
+          },
+          "episode": null,
+          "audiobook": null,
+          "localTrack": null,
+          "addedDate": "2025-05-03"
+        },
+      ],
+   }]
+}
+```
+
+---
+
 ## ▶️ Usage
 
 Run the program:
@@ -195,11 +231,13 @@ Here’s the updated Dependencies section including `mutagen` and `schedule`:
 
 ## 🛠 Dependencies
 
-- [yt-dlp](https://github.com/yt-dlp/yt-dlp) – YouTube downloader
-- [psutil](https://pypi.org/project/psutil/) – System resource monitoring
-- [colorama](https://pypi.org/project/colorama/) – Colored terminal output
-- [mutagen](https://pypi.org/project/mutagen/) – Audio metadata tagging and manipulation
-- [schedule](https://pypi.org/project/schedule/) – Job scheduling for periodic tasks
+- [yt-dlp](https://github.com/yt-dlp/yt-dlp) - YouTube downloader
+- [psutil](https://pypi.org/project/psutil/) - System resource monitoring
+- [colorama](https://pypi.org/project/colorama/) - Colored terminal output
+- [mutagen](https://pypi.org/project/mutagen/) - Audio metadata tagging and manipulation
+- [schedule](https://pypi.org/project/schedule/) - Job scheduling for periodic tasks
+- [Questionar](https://pypi.org/project/questionary/) - for the interactive menu 
+- [Shutil](https://pypi.org/project/shutil/) - for systems stuff
 
 Install all:
 

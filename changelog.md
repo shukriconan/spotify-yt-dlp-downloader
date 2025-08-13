@@ -6,6 +6,14 @@ Here’s what you asked for, following your style and structure:
 
 ---
 
+### 0.3.0 - 2025-AUG-13
+
+### Added
+
+- Download from youtube using links (playlist or video) as audio format
+
+---
+
 ### 0.2.0 - 2025-AUG-11
 
 ### Added
