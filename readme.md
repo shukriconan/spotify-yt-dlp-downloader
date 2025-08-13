@@ -5,6 +5,13 @@ Features interactive menus, system checks, download management, metadata embeddi
 
 ---
 
+## Screenshots
+
+![Downloader](images/downloader.png)
+![Downloading](images/downloading.png)
+
+---
+
 ## 📌 Features
 
 - **Enhanced Interactive CLI menus** for downloads, management, and automation
